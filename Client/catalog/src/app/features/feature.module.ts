@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { BrandModule } from './brand/brand.module';
 import { ModelModule } from './model/model.module';
 import { CarModule } from './car/car.module';
+import { OverviewModule } from './overview/overview.module';
 
 @NgModule({
   declarations: [],
@@ -16,7 +17,8 @@ import { CarModule } from './car/car.module';
     BrandModule,
     ModelModule,
     CarModule,
-    FormsModule
+    FormsModule,
+    OverviewModule
   ],
   exports: []
 })
