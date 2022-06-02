@@ -3,19 +3,24 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/material.module';
 import { FormsModule } from '@angular/forms';
-import { BrandModule } from './brand/brand.module';
-import { ModelModule } from './model/model.module';
+import { ModelGridComponent } from './components/table/model.grid.component';
+import { ModelEditComponent } from './components/dialogs/edit/model.edit.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ModelGridComponent,
+    ModelEditComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
     MaterialModule,
-    BrandModule,
-    ModelModule,
     FormsModule
+
   ],
-  exports: []
+  exports: [
+    ModelEditComponent,
+    ModelGridComponent
+  ]
 })
-export class FeatureModule { }
+export class ModelModule { }

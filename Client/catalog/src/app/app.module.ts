@@ -8,6 +8,7 @@ import { MaterialModule } from 'src/material.module';
 import { FeatureModule } from './features/feature.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrandDataService } from './features/brand/service/brand-data.service';
+import { ModelDataService } from './features/model/service/model-data.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BrandDataService } from './features/brand/service/brand-data.service';
     FeatureModule
   ],
   providers: [
-    BrandDataService
+    BrandDataService,
+    ModelDataService,
   ],
   bootstrap: [AppComponent]
 })

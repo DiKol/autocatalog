@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+}
+.spacer {
+  flex: 2 2 auto;
+}
+
+.mat-column-id {
+  flex: 0 0 20%;
+}
+.mat-column-name {
+  flex: 0 0 70%;
+}
+
+.mat-column-actions {
+  justify-content: flex-end;
+}
+
+.mat-header-cell {
+  font-size: 16px;
+}
+
+h4 {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 450;
+}

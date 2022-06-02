@@ -1,0 +1,14 @@
+<div class="container">
+  <h3 mat-dialog-title>{{title}}</h3>
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field>
+        <input matInput placeholder="name" [(ngModel)]="model.name" name="name" required autocomplete="off">
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="edit()">Save</button>
+      <button mat-button (click)="close()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>
