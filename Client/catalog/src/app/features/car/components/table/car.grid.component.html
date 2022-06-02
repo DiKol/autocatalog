@@ -1,0 +1,78 @@
+<h4>
+  Brands
+</h4>
+<div flexLayout="column" class="mat-elevation-z11">
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+  </mat-form-field>
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id">id
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="color">
+      <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by color">color
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.color }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="volume">
+      <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by volume">volume
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.volume }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by description">description
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.description }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="brand">
+      <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by brand">brand
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.model.brand.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="model">
+      <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by model">model
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.model.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by price">price
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.price }}</mat-cell>
+    </ng-container>
+
+    <!-- actions -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button (click)="add()">
+          <mat-icon fontSet="material-icons-two-tone">add</mat-icon>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let row; let i=index;">
+        <button mat-icon-button>
+          <mat-icon aria-label="Edit" fontSet="material-icons-two-tone" (click)="edit(i, row)">edit
+          </mat-icon>
+        </button>
+
+        <button mat-icon-button>
+          <mat-icon aria-label="Delete" fontSet="material-icons-two-tone" (click)="delete(i, row.id)">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+</div>

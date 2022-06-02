@@ -1,8 +1,8 @@
 <h4>
-  Brands
+  Models
 </h4>
 <div flexLayout="column" class="mat-elevation-z11">
- 
+
   <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" #input>
@@ -18,7 +18,13 @@
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">name
       </mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="brand">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by brand">brand
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.brand.name }}</mat-cell>
     </ng-container>
 
     <!-- actions -->
@@ -31,7 +37,7 @@
 
       <mat-cell *matCellDef="let row; let i=index;">
         <button mat-icon-button>
-          <mat-icon aria-label="Edit" fontSet="material-icons-two-tone" (click)="edit(i, row.id, row.name)">edit
+          <mat-icon aria-label="Edit" fontSet="material-icons-two-tone" (click)="edit(i, row.id, row.name, row.brand)">edit
           </mat-icon>
         </button>
 

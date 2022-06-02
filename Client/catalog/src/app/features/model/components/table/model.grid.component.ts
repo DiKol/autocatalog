@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Model } from 'src/app/core/model/model';
 import { ModelDataService } from '../../service/model-data.service';
 import { ModelEditComponent } from '../dialogs/edit/model.edit.component';
+import { Brand } from 'src/app/core/model/brand';
 
 
 
@@ -24,7 +25,7 @@ export class ModelGridComponent implements AfterViewInit, OnInit {
 
   models$: Observable<Model[]>;
 
-  displayedColumns = ['id', 'name', 'actions'];
+  displayedColumns = ['id', 'name', 'brand', 'actions'];
   dataSource: MatTableDataSource<Model> = new MatTableDataSource();
 
   constructor(
@@ -45,7 +46,9 @@ export class ModelGridComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.getModels();
-    this.models$.subscribe(x => { this.dataSource = new MatTableDataSource(x); });
+    this.models$.subscribe(x => {
+      this.dataSource = new MatTableDataSource(x);
+     });
   }
 
   add() {
@@ -56,8 +59,8 @@ export class ModelGridComponent implements AfterViewInit, OnInit {
     });
   }
 
-  edit(i: number, id: number, name: string) {
-    let dialogRef =this.dialogService.open(ModelEditComponent, { data: { id: id, name: name } });
+  edit(i: number, id: number, name: string, brand : Brand) {
+    let dialogRef = this.dialogService.open(ModelEditComponent, { data: { id: id, name: name, brand : brand } });
     dialogRef.afterClosed().subscribe(result => {
       this.models$ = this.service.getModels();
       this.models$.subscribe(x => { this.dataSource = new MatTableDataSource(x); });
@@ -66,7 +69,11 @@ export class ModelGridComponent implements AfterViewInit, OnInit {
   }
 
   delete(i: number, id: string) {
-    this.service.deleteModel(id).subscribe();
+    this.service.deleteModel(id).subscribe(x=>
+      {
+        this.models$ = this.service.getModels();
+        this.models$.subscribe(x => { this.dataSource = new MatTableDataSource(x); });
+      });
   }
 
   applyFilter(event: Event) {

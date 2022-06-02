@@ -1,0 +1,42 @@
+<div class="container">
+  <h3 mat-dialog-title>{{title}}</h3>
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+
+      <mat-form-field appearance="fill">
+        <mat-label>brands</mat-label>
+        <mat-select [(ngModel)]="selectedBrandId" name="selectedBrandId" (selectionChange)="brandChanged($event)">
+          <mat-option *ngFor="let brand of brands" [value]="brand.id">
+            {{ brand.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>models</mat-label>
+        <mat-select [(ngModel)]="selectedModelId" name="selectedModelId" (selectionChange)="modelChanged($event)">
+          <mat-option *ngFor="let model of models" [value]="model.id">
+            {{ model.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="description" [(ngModel)]="car.description" name="description" required autocomplete="off">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="volume" [(ngModel)]="car.volume" name="volume" required autocomplete="off" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="price" [(ngModel)]="car.price" name="price" required autocomplete="off" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="color" [(ngModel)]="car.color" name="color" required autocomplete="off" type="color">
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="edit()">Save</button>
+      <button mat-button (click)="close()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

@@ -3,21 +3,26 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/material.module';
 import { FormsModule } from '@angular/forms';
-import { BrandModule } from './brand/brand.module';
-import { ModelModule } from './model/model.module';
-import { CarModule } from './car/car.module';
+import { CarEditComponent } from './components/dialogs/edit/car.edit.component';
+import { CarGridComponent } from './components/table/car.grid.component';
+
+
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CarGridComponent,
+    CarEditComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
     MaterialModule,
-    BrandModule,
-    ModelModule,
-    CarModule,
     FormsModule
+
   ],
-  exports: []
+  exports: [
+    CarEditComponent,
+    CarGridComponent
+  ]
 })
-export class FeatureModule { }
+export class CarModule { }

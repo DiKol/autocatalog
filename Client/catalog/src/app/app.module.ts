@@ -9,6 +9,7 @@ import { FeatureModule } from './features/feature.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrandDataService } from './features/brand/service/brand-data.service';
 import { ModelDataService } from './features/model/service/model-data.service';
+import { CarDataService } from './features/car/service/car-data.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ModelDataService } from './features/model/service/model-data.service';
   providers: [
     BrandDataService,
     ModelDataService,
+    CarDataService
   ],
   bootstrap: [AppComponent]
 })

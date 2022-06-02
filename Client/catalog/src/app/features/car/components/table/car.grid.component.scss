@@ -6,14 +6,23 @@
 }
 
 .mat-column-id {
-  flex: 0 0 20%;
+  flex: 0 0 15%;
 }
-.mat-column-name {
-  flex: 0 0 20%;
+.mat-column-description {
+  flex: 0 0 15%;
+}
+.mat-column-volume {
+  flex: 0 0 15%;
+}
+.mat-column-color {
+  flex: 0 0 15%;
 }
 
 .mat-column-brand {
-  flex: 0 0 50%;
+  flex: 0 0 15%;
+}
+.mat-column-model {
+  flex: 0 0 15%;
 }
 
 .mat-column-actions {

@@ -10,6 +10,7 @@ namespace Catalog.Data.Models
     public class Price
     {
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public DateTime PriceDate { get; set; }
 

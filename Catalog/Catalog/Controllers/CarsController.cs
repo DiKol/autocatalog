@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Car>>> GetCars()
         {
-            return await _context.Cars.ToListAsync();
+            return await _context.Cars.Include(x=>x.Model).ThenInclude(x=>x.Brand).ToListAsync();
         }
 
         // GET: api/Cars/5

@@ -34,6 +34,13 @@ export class ModelDataService {
     );
   }
 
+  getModelsByBrand(id:number): Observable<Model[]> {
+      return this.http.get<Array<Model>>(`${api}/models/getmodelsbybrand/${id}`).pipe(
+      delay(fakeDelays.select),
+      catchError(this.handleError())
+    );
+  }
+
   updateModel(model: Model): Observable<Model> {
     return this.http.put<Model>(`${api}/models/${model.id}`, model).pipe(
       delay(fakeDelays.save),

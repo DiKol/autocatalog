@@ -25,10 +25,11 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Model>>> GetModels()
         {
-            return await _context.Models.ToListAsync();
+            return await _context.Models.Include(x => x.Brand).ToListAsync();
         }
 
         // GET: api/Models/5
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<Model>> GetModel(int id)
         {
@@ -42,6 +43,15 @@ namespace WebAPI.Controllers
             return model;
         }
 
+        // GET: api/Models/5
+        
+        [HttpGet("GetModelsByBrand/{id}")]
+        public async Task<ActionResult<IEnumerable<Model>>> GetModelsByBrand(int id)
+        {
+            return await _context.Models.Include(x => x.Brand).Where(x=>x.BrandId == id).ToListAsync();
+        }
+
+
         // PUT: api/Models/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -51,6 +61,12 @@ namespace WebAPI.Controllers
             if (id != model.Id)
             {
                 return BadRequest();
+            }
+            
+            if ((model.Brand != null) && (model.Brand.Id > 0))
+            {
+                model.BrandId = model.Brand.Id;
+                model.Brand = null;
             }
 
             _context.Entry(model).State = EntityState.Modified;
@@ -80,6 +96,12 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Model>> PostModel(Model model)
         {
+            if ((model.Brand != null) && (model.Brand.Id > 0))
+            {
+                model.BrandId = model.Brand.Id;
+                model.Brand = null;
+            }
+
             _context.Models.Add(model);
             await _context.SaveChangesAsync();
 
