@@ -34,7 +34,10 @@ export class OverviewComponent implements AfterViewInit, OnInit {
 
   cars: Car[] =[];
   flexstyle: { [klass: string]: any; } = {};
-  count: number = 8;
+
+  count: number = 25;
+  columnCount:number = 5;
+
   @ViewChild('xrow') xrow!: ElementRef;
 
   constructor(
@@ -44,13 +47,12 @@ export class OverviewComponent implements AfterViewInit, OnInit {
     public carService: CarDataService,
   ) {
 
-    this.carService.getCars().subscribe(cars=>{
+    this.carService.getCars().subscribe(items=>{
 
-      for (var i = 0; i < cars.length; i++)
+      for (var i = 0; i < this.count && i< items.length; i++)
       {
-        this.cars.push(cars[i]);
+        this.cars.push(items[i]);
       }
-
     });
 
 
@@ -89,11 +91,31 @@ export class OverviewComponent implements AfterViewInit, OnInit {
   hasChild = (_: number, node: TNode) => !!node.children && node.children.length > 0;
 
 
-  filterBrand(id:number){}
-  filterModel(id:number){}
+  filterBrand(id:number){
+
+    this.carService.getCars().subscribe(s=>{
+      var items = s.filter(x=>x.model.brand.id ==id);
+      this.cars =[];
+      for (var i = 0; i < this.count && i< items.length; i++)
+      {
+        this.cars.push(items[i]);
+      }
+    });
+  }
+  filterModel(id:number){
+
+    this.carService.getCars().subscribe(s=>{
+      var items = s.filter(x=>x.model.id ==id);
+      this.cars =[];
+      for (var i = 0; i < this.count && i< items.length; i++)
+      {
+        this.cars.push(items[i]);
+      }
+    });
+  }
 
   ngAfterViewInit() {
-    var w = this.xrow.nativeElement.offsetWidth/5-1;
+    var w = this.xrow.nativeElement.offsetWidth/this.columnCount-1;
     this.flexstyle = { flex: '1 0 ' + w + 'px' };
   }
 
