@@ -4,25 +4,19 @@
 .spacer {
   flex: 2 2 auto;
 }
-
-.mat-column-id {
-  flex: 0 0 20%;
-}
-.mat-column-name {
-  flex: 0 0 20%;
+.oview {
+  width: 300px;
+  height: 500px;
 }
 
-.mat-column-brand {
-  flex: 0 0 50%;
-}
+  .box{
+    height: 180px;
+    width: 180px;
+    background: #fff;
+    border-radius: 4px;
+   }
 
-.mat-column-actions {
-  justify-content: flex-end;
-}
 
-.mat-header-cell {
-  font-size: 16px;
-}
 
 h4 {
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -43,8 +37,8 @@ h4 {
 /*
  * This padding sets alignment of the nested nodes.
  */
-.example-tree .mat-nested-tree-node div[role=group] {
-  padding-left: 40px;
+.example-tree .mat-nested-tree-node div[role="group"] {
+  padding-left: 10px;
 }
 
 /*
@@ -52,6 +46,6 @@ h4 {
  * Leaf nodes need to have padding so as to align with other non-leaf nodes
  * under the same parent.
  */
-.example-tree div[role=group] > .mat-tree-node {
-  padding-left: 40px;
+.example-tree div[role="group"] > .mat-tree-node {
+  padding-left: 10px;
 }
